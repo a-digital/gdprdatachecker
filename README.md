@@ -26,4 +26,11 @@ No configuration is necessary after installation has been completed.
 
 Go to GDPR Checker from the sidebar, and type in an email address. Once the check is completed you can download a PDF report or email the information directly to the email address entered.
 
+Currently this plugin is compatible with the following:
+
+Craft Commerce
+Charge
+Freeform
+Formbuilder
+
 Brought to you by [Matt Shearing](https://adigital.agency)
