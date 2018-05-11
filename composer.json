@@ -1,0 +1,14 @@
+{
+	"name": "gdprdatachecker/gdprdatachecker",
+	"description": "Run through the database and pull out any information associated with a specified email address",
+	"type": "craft-plugin",
+	"authors": [
+		{
+			"name": "Matt Shearing",
+			"homepage": "https://adigital.agency"
+		}
+	],
+	"require": {
+		"composer/installers": "~1.0"
+	}
+}

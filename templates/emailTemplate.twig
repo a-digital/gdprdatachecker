@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>GDPR Data Report</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Viewport" content="width=device-width, initial-scale=1.0" />
+
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
+
+<style>
+#full-wrap { margin: 0; padding: 0; width: 100% !important; line-height: 100% !important; }
+#page-wrap { margin: 0; padding: 0 40px; width: 100% !important; line-height: 100% !important; }
+.header {width: 100% !important;padding: 3px 6px; background:#003F99;}
+img { outline:none; text-decoration:none; -ms-interpolation-mode: bicubic; }
+img.logo {width: 180px; }
+
+body { width: 100% !important; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+a, a:hover {color:#000 !important;text-decoration:underline !important;}
+
+#page-wrap p { padding-left: 0px; padding-right: 0px;font-size: 13px;line-height:18px;font-family:corbel,verdana,sans-serif; max-width: 800px; }
+#page-wrap p.small { font-size: 10px;line-height:14px;font-family:corbel,verdana,sans-serif; }
+
+@media only screen and (max-width : 640px) {
+
+	#page-wrap { margin: 0; padding: 0; width: 100% !important; line-height: 100% !important; }
+	.jt {width: 100% !important;padding: 3px 6px;background:#000;}
+	img.logo {width: 180px !important;}
+
+	#page-wrap p { padding-left: 20px; padding-right: 20px;font-size: 13px;line-height:18px;font-family:corbel,verdana,sans-serif; max-width: 100%; }
+	
+	#page-wrap table.main {position: relative;}
+	
+	.rule { margin-left: 20px; margin-right: 20px; }
+	
+}
+
+</style>
+
+</head>
+
+<body style="margin:0 auto;padding: 0;">
+
+	<table id="full-wrap" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td class="header"><img class="logo" style="display:block" alt="GDPR - General Data Protection Regulation" src="{{ siteUrl }}cms/resources/gdprdatachecker/images/gdpr-logo.png" width="100px"></td>
+		</tr>
+		<tr>
+			<td>
+				<table id="page-wrap" align="center" border="0" cellpadding="0" cellspacing="0" width="100%" class="main">
+					<tr>
+						<td valign="top" style="padding-top: 10px;">
+							<p>Hello,</p>
+							<p>You are receiving this email because you have requested to receive a report of the data we currently hold on you. If you did not request this information, then please disregard this email.</p>
+							<p>We have attached a PDF which contains any member acount information, form submissions, and order information that we hold in our database attached to your email address. If you would like any of this data to be reviewed and/or removed, then please let us know.</p>
+
+							<p>Regards,<br />{{ siteName }}<br /><a href="{{ siteUrl }}">{{ siteUrl }}</a></p>
+
+							<div class="rule" style="margin-top:20px;padding-bottom:5px;border-top:1px solid #000;height:1px;"></div>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	
+</body>
+</html>

@@ -1,0 +1,633 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Data Report for {{ gdprEmail }}</title>
+		<style>
+			body, td, th, input, select, textarea, option, optgroup {
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 12px;
+			}
+			.header {
+				width: 100%;
+				border-bottom: 1px solid #CDDDDD;
+				background-color: #003F99;
+				margin: -1.2cm -1.2cm 0.5cm -1.2cm;
+				padding: 0.25cm 2.4cm 0.25cm 1px;
+			}
+			.header .right {
+				text-align: right;
+				vertical-align: bottom;
+			}
+			.header h1 {
+				color: #FFFFFF;
+				font-size: 35px;
+				font-weight: normal;
+				margin-top: 0px;
+				margin-bottom: 0px;
+			}
+			.header h3 {
+				color: #FFCE00;
+				margin-top: 0px;
+				margin-bottom: 5px;
+			}
+			.heading td {
+				background: #ECF1F4;
+			}
+			.content-wrap {
+				width: 100%;
+				margin-bottom: 10px;
+				table-layout: fixed;
+			}
+			.content-wrap h1, .content-wrap h2 {
+				margin-top: 5px;
+				margin-bottom: 10px;
+			}
+			.content-wrap h2 {
+				text-decoration: underline;
+			}
+			.content-wrap h3 {
+				margin-top: 5px;
+				margin-bottom: 10px;
+			}
+			.content-wrap .split {
+				border: none;
+				border-top: 1px solid #8d8d8d;
+			}
+			.content-wrap .sub-split {
+				border: none;
+				border-top: 1px dashed #8d8d8d;
+			}
+			.label {
+				vertical-align: top;
+				word-break: break-all;
+				word-wrap: break-word;
+			}
+			.label p {
+				font-size: 12px;
+				margin: 0.5em 0;
+				color: #55616f;
+			}
+			.address, .product, .status {
+				border-collapse: collapse;
+			}
+			.address {
+				width: 100%;
+				margin-bottom: 8px;
+				border-top: 1px solid #CDDDDD;
+				border-right: 1px solid #CDDDDD;
+			}
+			.address th, .address td {
+				border-left: 1px solid #CDDDDD;
+				border-bottom: 1px solid #CDDDDD;
+				padding: 5px;
+			}
+			.address td {
+				width: 50%;
+			}
+			.product, .status {
+				width: 100%;
+				margin-bottom: 8px;
+				border-top: 1px solid #CDDDDD;
+				border-right: 1px solid #CDDDDD;
+			}
+			.product td, .status td {
+				border-left: 1px solid #CDDDDD;
+				border-bottom: 1px solid #CDDDDD;
+				padding: 5px;
+			}
+			.status td {
+				text-align: center;
+			}
+			.status tr.heading td {
+				font-weight: bold;
+			}
+			span.highlight {
+				color: #b20000;
+				font-weight: bold;
+				text-transform: uppercase;
+			}
+			.footer {
+				width: 100%;
+				border-top: 1px solid #7e7e7e;
+				text-align: center;
+			}
+			.footer p {
+				margin: 0;
+			}
+			ul {
+				padding-left: 20px;
+				margin: 5px 0 10px;
+			}
+			ul li {
+				line-height: 150%;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<table class="header">
+				<tr>
+					<td class="left"><img src="{{ gdrpLogoPath }}" style="width: 5cm;"></td>
+					<td class="right"><h1>Your Data Report</h1><h3>From {{ siteName }}</h3></td>
+				</tr>
+			</table>
+			<table width="100%" class="content-wrap">
+				{% if gdprData.member is defined and gdprData.member|length %}
+					<tr>
+						<td>
+							<h1>User Account</h1>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">
+							<p>User Account ID: {{ gdprData.member.id }}</p>
+							<p>First Name: {{ gdprData.member.firstName }}</p>
+							<p>Last Name: {{ gdprData.member.lastName }}</p>
+							<p>Email: {{ gdprData.member.email }}</p>
+							{% if gdprData.member.admin == 1 %}
+								<p>Admin User</p>
+							{% endif %}
+							{% if gdprData.member.locked == 1 %}
+								<p>Account is currently locked.</p>
+							{% endif %}
+							{% if gdprData.member.suspended == 1 %}
+								<p>Account is currently suspended.</p>
+							{% endif %}
+							{% if gdprData.member.pending == 1 %}
+								<p>Account is currently pending.</p>
+							{% endif %}
+							{% if gdprData.member.passwordResetRequired == 1 %}
+								<p>A password reset is required.</p>
+							{% endif %}
+							<p>Last Login Date: {{ gdprData.member.lastLoginDate }}</p>
+							<p>Last Login Attempt IP: {{ gdprData.member.lastLoginAttemptIPAddress }}</p>
+							{% if gdprData.member.invalidLoginWindowStart|length %}
+								<p>Invalid Login Window Start: {{ gdprData.member.invalidLoginWindowStart }}</p>
+							{% endif %}
+							{% if gdprData.member.invalidLoginCount|length %}
+								<p>Invalid Login Count: {{ gdprData.member.invalidLoginCount }}</p>
+							{% endif %}
+							{% if gdprData.member.lastInvalidLoginDate|length %}
+								<p>Last Invalid Login Date: {{ gdprData.member.lastInvalidLoginDate }}</p>
+							{% endif %}
+							{% if gdprData.member.lockoutDate|length %}
+								<p>Lockout Date: {{ gdprData.member.lockoutDate }}</p>
+							{% endif %}
+							{% if gdprData.member.verificationCode|length %}
+								<p>Verification Code: {{ gdprData.member.verificationCode }}</p>
+							{% endif %}
+							{% if gdprData.member.verificationCodeIssuedDate|length %}
+								<p>Verification Code Issued Date: {{ gdprData.member.verificationCodeIssuedDate }}</p>
+							{% endif %}
+							{% if gdprData.member.unverifiedEmail|length %}
+								<p>Unveririfed Email: {{ gdprData.member.unverifiedEmail }}</p>
+							{% endif %}
+							<p>Last Password Change Date: {{ gdprData.member.lastPasswordChangeDate }}</p>
+							<p>Date Created: {{ gdprData.member.dateCreated }}</p>
+							<p>Date Updated: {{ gdprData.member.dateUpdated }}</p>
+						</td>
+						<td width="15%" style="vertical-align: top;">
+							{% if gdprData.member.photoPath is defined and gdprData.member.photoPath|length %}
+								<p><img src="{{ gdprData.member.photoPath }}" width="100px"/></p>
+							{% endif %}
+						</td>
+					</tr>
+					{% if gdprData.member.entries|length %}
+						<tr>
+							<td>
+								<h2>Authored Entries</h2>
+							</td>
+						</tr>
+						{% for entry in gdprData.member.entries %}
+							<tr>
+								<td class="label">
+									<h3>Entry: ID - {{ entry.id }}</h3>
+									<p>Title: {{ entry.title }}</p>
+									<p>Section: {{ entry.section }}</p>
+									{% if entry.uri|length %}
+										<p>URI: {{ entry.uri }}</p>
+									{% endif %}
+									<p>Edit Entry: {{ entry.cpEditUrl }}</p>
+									<p>Post Date: {{ entry.postDate|date("Y-m-d H:i:s") }}</p>
+									<p>Date Created: {{ entry.dateCreated|date("Y-m-d H:i:s") }}</p>
+									<p>Date Updated: {{ entry.dateUpdated|date("Y-m-d H:i:s") }}</p>
+								</td>
+							</tr>
+							{% if not loop.last %}
+								<tr>
+									<td>
+										<hr class="sub-split">
+									</td>
+								</tr>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+					<tr>
+						<td>
+							<hr class="split">
+						</td>
+					</tr>
+				{% endif %}
+				{% if gdprData.freeform is defined and gdprData.freeform|length %}
+					<tr>
+						<td>
+							<h1>Form Submissions</h1>
+						</td>
+					</tr>
+					{% for formSubmission in gdprData.freeform %}
+						<tr>
+							<td class="label">
+								<h3>Form Submission: ID - {{ formSubmission.id }}</h3>
+								{% for fieldKey, fieldVal in formSubmission if fieldVal|length %}
+									<p>{{ fieldKey|camelToSpace|title }}: {{ fieldVal }}</p>
+								{% endfor %}
+							</td>
+						</tr>
+						{% if not loop.last %}
+							<tr>
+								<td>
+									<hr class="sub-split">
+								</td>
+							</tr>
+						{% endif %}
+					{% endfor %}
+					<tr>
+						<td>
+							<hr class="split">
+						</td>
+					</tr>
+				{% endif %}
+				{% if gdprData.formbuilder is defined and gdprData.formbuilder|length %}
+					<tr>
+						<td>
+							<h1>Form Submissions</h1>
+						</td>
+					</tr>
+					{% for formSubmission in gdprData.formbuilder %}
+						<tr>
+							<td class="label">
+								<h3>Form Submission: ID - {{ formSubmission.id }}</h3>
+								<p>Form ID: {{ formSubmission.formId }}</p>
+								<p>Title: {{ formSubmission.title }}</p>
+								{% if formSubmission.files|length %}
+									<p>Files: {{ formSubmission.files }}</p>
+								{% endif %}
+								{% if formSubmission.submission|length %}
+									{% for fieldKey, fieldVal in formSubmission.submission %}
+										<p>{{ fieldKey|camelToSpace|title }}: {{ fieldVal }}</p>
+									{% endfor %}
+								{% endif %}
+								<p>Date Created: {{ formSubmission.dateCreated }}</p>
+								<p>Date Updated: {{ formSubmission.dateUpdated }}</p>
+							</td>
+						</tr>
+						{% if not loop.last %}
+							<tr>
+								<td>
+									<hr class="sub-split">
+								</td>
+							</tr>
+						{% endif %}
+					{% endfor %}
+					<tr>
+						<td>
+							<hr class="split">
+						</td>
+					</tr>
+				{% endif %}
+				{% if gdprData.commerce is defined and gdprData.commerce|length %}
+					{% for customer in gdprData.commerce %}
+						<tr>
+							<td>
+								<h1>Commerce Customer: ID - {{ customer.customerId }}</h1>
+							</td>
+						</tr>
+						{% if customer.addresses|length %}
+							<tr>
+								<td>
+									<h2>Addresses</h2>
+								</td>
+							</tr>
+							{% for address in customer.addresses %}
+								<tr>
+									<td class="label">
+										<h3>Address: ID - {{ address.id }}</h3>
+										{% if address.attention|length %}
+											<p>Attention: {{ address.attention }}</p>
+										{% endif %}
+										{% if address.title|length %}
+											<p>Title: {{ address.title }}</p>
+										{% endif %}
+										<p>First Name: {{ address.firstName }}</p>
+										<p>Last Name: {{ address.lastName }}</p>
+										<p>Country ID: {{ address.countryId }}</p>
+										{% if address.stateId|length %}
+											<p>State ID: {{ address.stateId }}</p>
+										{% endif %}
+										<p>Address 1: {{ address.address1 }}</p>
+										<p>Address 2: {{ address.address2 }}</p>
+										<p>City: {{ address.city }}</p>
+										<p>Zip Code: {{ address.zipCode }}</p>
+										<p>Phone: {{ address.phone }}</p>
+										<p>Alternative Phone: {{ address.alternativePhone }}</p>
+										{% if address.businessName|length %}
+											<p>Business Name: {{ address.businessName }}</p>
+										{% endif %}
+										{% if address.businessTaxId|length %}
+											<p>Business Tax ID: {{ address.businessTaxId }}</p>
+										{% endif %}
+										{% if address.businessId|length %}
+											<p>Business ID: {{ address.businessId }}</p>
+										{% endif %}
+										<p>State Name: {{ address.stateName }}</p>
+									</td>
+								</tr>
+								{% if not loop.last %}
+									<tr>
+										<td>
+											<hr class="sub-split">
+										</td>
+									</tr>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+						{% if customer.orders|length %}
+							<tr>
+								<td>
+									<h2>Orders</h2>
+								</td>
+							</tr>
+							{% for order in customer.orders %}
+								<tr>
+									<td class="label">
+										<h3>Order: ID - {{ order.id }}</h3>
+										{% if order.getPdfUrl('receipt')|length %}
+											<p>PDF: {{ order.getPdfUrl('receipt') }}</p>
+										{% endif %}
+										<p>Edit Order: /cms/commerce/orders/{{ order.id }}</p>
+										<p>Billing Shipping ID: {{ order.billingAddressId }}</p>
+										<p>Shipping Shipping ID: {{ order.shippingAddressId }}</p>
+										<p>Payment Method ID: {{ order.paymentMethodId }}</p>
+										<p>Order Status ID: {{ order.orderStatusId }}</p>
+										<p>Number: {{ order.number }}</p>
+										{% if order.couponCode|length %}
+											<p>Coupon Code: {{ order.couponCode }}</p>
+										{% endif %}
+										<p>Item Total: {{ order.itemTotal }}</p>
+										{% if order.baseDiscount > 0 %}
+											<p>Base Discount: {{ order.baseDiscount }}</p>
+										{% endif %}
+										<p>Base Shipping Cost: {{ order.baseShippingCost }}</p>
+										{% if order.baseTax > 0 %}
+											<p>Base Tax: {{ order.baseTax }}</p>
+										{% endif %}
+										{% if order.baseTaxIncluded > 0 %}
+											<p>Base Tax Included: {{ order.baseTaxIncluded }}</p>
+										{% endif %}
+										<p>Total Price: {{ order.totalPrice }}</p>
+										<p>Total Paid: {{ order.totalPaid }}</p>
+										<p>Is Completed: {{ order.isCompleted }}</p>
+										<p>Date Ordered: {{ order.dateOrdered }}</p>
+										<p>Date Paid: {{ order.datePaid }}</p>
+										<p>Currency: {{ order.currency }}</p>
+										<p>Payment Currency: {{ order.paymentCurrency }}</p>
+										<p>Last IP: {{ order.lastIp }}</p>
+										<p>Order Locale: {{ order.orderLocale }}</p>
+										{% if order.message|length %}
+											<p>Message: {{ order.message }}</p>
+										{% endif %}
+										<p>Return Url: {{ order.returnUrl }}</p>
+										<p>Cancel Url: {{ order.cancelUrl }}</p>
+										<p>Shipping Method: {{ order.shippingMethod.name }}</p>
+										<p>Date Created: {{ order.dateCreated }}</p>
+										<p>Date Updated: {{ order.dateUpdated }}</p>
+									</td>
+								</tr>
+								{% if not loop.last %}
+									<tr>
+										<td>
+											<hr class="sub-split">
+										</td>
+									</tr>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+						{% if customer.inactiveCarts|length %}
+							<tr>
+								<td>
+									<h2>Inactive Carts</h2>
+								</td>
+							</tr>
+							{% for cart in customer.inactiveCarts %}
+								<tr>
+									<td class="label">
+										<h3>Cart: ID - {{ cart.id }}</h3>
+										<p>Edit Cart: /cms/commerce/orders/{{ cart.id }}</p>
+										{% if cart.billingAddressId|length %}
+											<p>Billing Shipping ID: {{ cart.billingAddressId }}</p>
+										{% endif %}
+										{% if cart.shippingAddressId|length %}
+											<p>Shipping Shipping ID: {{ cart.shippingAddressId }}</p>
+										{% endif %}
+										{% if cart.paymentMethodId|length %}
+											<p>Payment Method ID: {{ cart.paymentMethodId }}</p>
+										{% endif %}
+										{% if cart.orderStatusId|length %}
+											<p>Order Status ID: {{ cart.orderStatusId }}</p>
+										{% endif %}
+										{% if cart.number|length %}
+											<p>Number: {{ cart.number }}</p>
+										{% endif %}
+										{% if cart.couponCode|length %}
+											<p>Coupon Code: {{ cart.couponCode }}</p>
+										{% endif %}
+										{% if cart.itemTotal > 0 %}
+											<p>Item Total: {{ cart.itemTotal }}</p>
+										{% endif %}
+										{% if cart.baseDiscount > 0 %}
+											<p>Base Discount: {{ cart.baseDiscount }}</p>
+										{% endif %}
+										{% if cart.baseShippingCost > 0 %}
+											<p>Base Shipping Cost: {{ cart.baseShippingCost }}</p>
+										{% endif %}
+										{% if cart.baseTax > 0 %}
+											<p>Base Tax: {{ cart.baseTax }}</p>
+										{% endif %}
+										{% if cart.baseTaxIncluded > 0 %}
+											<p>Base Tax Included: {{ cart.baseTaxIncluded }}</p>
+										{% endif %}
+										{% if cart.totalPrice > 0 %}
+											<p>Total Price: {{ cart.totalPrice }}</p>
+										{% endif %}
+										{% if cart.totalPaid > 0 %}
+											<p>Total Paid: {{ cart.totalPaid }}</p>
+										{% endif %}
+										{% if cart.isCompleted|length %}
+											<p>Is Completed: {{ cart.isCompleted }}</p>
+										{% endif %}
+										{% if cart.dateOrdered|length %}
+											<p>Date Ordered: {{ cart.dateOrdered }}</p>
+										{% endif %}
+										{% if cart.datePaid|length %}
+											<p>Date Paid: {{ cart.datePaid }}</p>
+										{% endif %}
+										{% if cart.currency|length %}
+											<p>Currency: {{ cart.currency }}</p>
+										{% endif %}
+										{% if cart.paymentCurrency|length %}
+											<p>Payment Currency: {{ cart.paymentCurrency }}</p>
+										{% endif %}
+										{% if cart.lastIp|length %}
+											<p>Last IP: {{ cart.lastIp }}</p>
+										{% endif %}
+										{% if cart.orderLocale|length %}
+											<p>Order Locale: {{ cart.orderLocale }}</p>
+										{% endif %}
+										{% if cart.message|length %}
+											<p>Message: {{ cart.message }}</p>
+										{% endif %}
+										{% if cart.returnUrl|length %}
+											<p>Return Url: {{ cart.returnUrl }}</p>
+										{% endif %}
+										{% if cart.cancelUrl|length %}
+											<p>Cancel Url: {{ cart.cancelUrl }}</p>
+										{% endif %}
+										{% if cart.shippingMethod|length %}
+											<p>Shipping Method: {{ cart.shippingMethod }}</p>
+										{% endif %}
+										{% if cart.dateCreated|length %}
+											<p>Date Created: {{ cart.dateCreated }}</p>
+										{% endif %}
+										{% if cart.dateUpdated|length %}
+											<p>Date Updated: {{ cart.dateUpdated }}</p>
+										{% endif %}
+									</td>
+								</tr>
+								{% if not loop.last %}
+									<tr>
+										<td>
+											<hr class="sub-split">
+										</td>
+									</tr>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+						{% if not loop.last %}
+							<tr>
+								<td>
+									<hr class="sub-split">
+								</td>
+							</tr>
+						{% endif %}
+					{% endfor %}
+					<tr>
+						<td>
+							<hr class="split">
+						</td>
+					</tr>
+				{% endif %}
+				{% if gdprData.charge is defined and gdprData.charge|length %}
+					<tr>
+						<td>
+							<h1>Charge Customers</h1>
+						</td>
+					</tr>
+					{% for customer in gdprData.charge %}
+						<tr>
+							<td class="label">
+								<h2>Charge Customer: ID - {{ customer.id }}</h2>
+								<p>Stripe ID: {{ customer.stripeId }}</p>
+								<p>Mode: {{ customer.mode }}</p>
+								<p>User ID: {{ customer.userId }}</p>
+								<p>Email: {{ customer.email }}</p>
+								<p>Name: {{ customer.name }}</p>
+								<p>Date Created: {{ customer.dateCreated }}</p>
+								<p>Date Updated: {{ customer.dateUpdated }}</p>
+							</td>
+						</tr>
+						{% if customer.charges|length %}
+							<tr>
+								<td>
+									<h2>Charges</h2>
+								</td>
+							</tr>
+							{% for charge in customer.charges %}
+								<tr>
+									<td class="label">
+										<h3>Charge: ID - {{ charge.id }}</h3>
+										<p>User ID: {{ charge.userId }}</p>
+										<p>Type: {{ charge.type }}</p>
+										<p>Customer ID: {{ charge.customerId }}</p>
+										<p>Account ID: {{ charge.accountId }}</p>
+										<p>Mode: {{ charge.mode }}</p>
+										<p>Source URL: {{ charge.sourceUrl }}</p>
+										<p>Hash: {{ charge.hash }}</p>
+										{% if charge.request|length %}
+											<p>Plan Amount: {{ charge.request.planAmount }}</p>
+											<p>Plan Currency: {{ charge.request.planCurrency }}</p>
+											<p>Plan Amount In Cents: {{ charge.request.planAmountInCents }}</p>
+											<p>Plan Name: {{ charge.request.planName }}</p>
+											<p>Plan Discount: {{ charge.request.planDiscount }}</p>
+											<p>Plan Full Amount: {{ charge.request.planFullAmount }}</p>
+											<p>Plan Choice: {{ charge.request.planChoice }}</p>
+											<p>Plan Opts: {{ charge.request.planOpts }}</p>
+											<p>Plan Interval: {{ charge.request.planInterval }}</p>
+											<p>Plan Interval Count: {{ charge.request.planIntervalCount }}</p>
+											<p>Plan Destination: {{ charge.request.destination }}</p>
+											<p>Application Fee: {{ charge.request.applicationFee }}</p>
+											<p>Application Fee In Percent: {{ charge.request.applicationFeeInPercent }}</p>
+											<p>Application Fee In Cents: {{ charge.request.applicationFeeInCents }}</p>
+											<p>Card Name: {{ charge.request.cardName }}</p>
+											<p>Card Address Line 1: {{ charge.request.cardAddressLine1 }}</p>
+											<p>Card Address Line 2: {{ charge.request.cardAddressLine2 }}</p>
+											<p>Card Address City: {{ charge.request.cardAddressCity }}</p>
+											<p>Card Address State: {{ charge.request.cardAddressState }}</p>
+											<p>Card Address Zip: {{ charge.request.cardAddressZip }}</p>
+											<p>Card Address Country: {{ charge.request.cardAddressCountry }}</p>
+											<p>Card Last 4: {{ charge.request.cardLast4 }}</p>
+											<p>Card Type: {{ charge.request.cardType }}</p>
+											<p>Card Exp Month: {{ charge.request.cardExpMonth }}</p>
+											<p>Card Exp Year: {{ charge.request.cardExpYear }}</p>
+											<p>Coupon: {{ charge.request.coupon }}</p>
+											<p>Coupon Stripe ID: {{ charge.request.couponStripeId }}</p>
+											<p>Stripe Account Balance: {{ charge.request.stripeAccountBalance }}</p>
+										{% endif %}
+										<p>Actions: {{ charge.actions }}</p>
+										<p>Meta: {{ charge.meta }}</p>
+										<p>Notes: {{ charge.notes }}</p>
+										<p>Description: {{ charge.description }}</p>
+										<p>Timestamp: {{ charge.timestamp }}</p>
+										<p>Amount: {{ charge.amount }}</p>
+										<p>Currency: {{ charge.currency }}</p>
+										<p>Date Created: {{ charge.dateCreated }}</p>
+										<p>Date Updated: {{ charge.dateUpdated }}</p>
+									</td>
+								</tr>
+								{% if not loop.last %}
+									<tr>
+										<td>
+											<hr class="sub-split">
+										</td>
+									</tr>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+						{% if not loop.last %}
+							<tr>
+								<td>
+									<hr class="sub-split">
+								</td>
+							</tr>
+						{% endif %}
+					{% endfor %}
+					<tr>
+						<td>
+							<hr class="split">
+						</td>
+					</tr>
+				{% endif %}
+			</table>
+		</div>
+	</body>
+</html>

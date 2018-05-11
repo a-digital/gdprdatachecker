@@ -1,0 +1,44 @@
+{#
+/**
+ * GDPR Data Checker plugin for Craft CMS
+ *
+ * GDPR Data Checker Index.twig
+ *
+ * @author    Matt Shearing
+ * @copyright Copyright (c) 2018 Matt Shearing
+ * @link      https://adigital.agency
+ * @package   GdprDataChecker
+ * @since     1.0.0
+ */
+#}
+
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+
+{% set title = "GDPR Data Checker"|t %}
+
+{% set fullPageForm = "true" %}
+{% set extraPageHeaderHtml %}
+	<input type="submit" class="btn submit" id="gdprsubmitemail" value="{{ 'Check'|t }}">
+{% endset %}
+
+{% set content %}
+	
+	{% includeCssResource "gdprdatachecker/css/GdprDataChecker_Style.css" %}
+	{% includeJsResource "gdprdatachecker/js/GdprDataChecker_Script.js" %}
+	
+	<h2>{{ "Please Note"|t }}</h2>
+	<p class="textline">By entering someones email address you are ackowledging a request from someone to see all of their data held on them by this site. Please note however that any data saved in 3rd party services such as Stripe, MailChimp, Campaign Monitor, etc will not be returned by this tool. To get this data you will need to request it from each of those specific third party services as this will only look through the data held in the local database for the website.</p>
+	{{ forms.textField({
+	    label: 'Email Address',
+	    instructions: 'Please enter the email address of the person who you would like to retrieve data for.',
+	    id: 'emailAddress',
+	    name: 'emailAddress',
+	    value: ''
+	}) }}
+	{{ forms.hidden({
+	    id: 'action',
+	    name: 'action',
+	    value: 'gdprDataChecker/actions/checkEmail'
+	}) }}
+{% endset %}
