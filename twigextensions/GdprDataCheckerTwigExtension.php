@@ -11,8 +11,8 @@
  * http://twig.sensiolabs.org/doc/advanced.html
  * --snip--
  *
- * @author    Matt Shearing
- * @copyright Copyright (c) 2018 Matt Shearing
+ * @author    A Digital
+ * @copyright Copyright (c) 2018 A Digital
  * @link      https://adigital.agency
  * @package   GdprDataChecker
  * @since     1.0.0

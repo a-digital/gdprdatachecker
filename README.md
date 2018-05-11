@@ -33,4 +33,4 @@ Currently this plugin is compatible with the following:
 + Freeform
 + Formbuilder
 
-Brought to you by [Matt Shearing](https://adigital.agency)
+Brought to you by [A Digital](https://adigital.agency)

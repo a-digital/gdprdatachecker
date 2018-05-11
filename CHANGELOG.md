@@ -4,4 +4,4 @@
 
 * Initial release
 
-Brought to you by [Matt Shearing](https://adigital.agency)
+Brought to you by [A Digital](https://adigital.agency)
