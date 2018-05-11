@@ -28,9 +28,9 @@ Go to GDPR Checker from the sidebar, and type in an email address. Once the chec
 
 Currently this plugin is compatible with the following:
 
-Craft Commerce
-Charge
-Freeform
-Formbuilder
++ Craft Commerce
++ Charge
++ Freeform
++ Formbuilder
 
 Brought to you by [Matt Shearing](https://adigital.agency)
