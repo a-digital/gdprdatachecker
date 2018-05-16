@@ -107,6 +107,17 @@
 				<p>Date Created: {{ gdprData.member.dateCreated }}</p>
 				<p>Date Updated: {{ gdprData.member.dateUpdated }}</p>
 				
+				{% if gdprData.member.fields|length %}
+					<div class="subheading">
+						<h3>Custom Fields</h3>
+					</div>
+					<div class="subcontent">
+						{% for fieldKey, fieldVal in gdprData.member.fields %}
+							<p>{{ fieldKey|camelToSpace|title }}: {{ fieldVal }}</p>
+						{% endfor %}
+					</div>
+				{% endif %}
+				
 				{% if gdprData.member.entries|length %}
 					<div class="subheading">
 						<h3>Authored Entries</h3>

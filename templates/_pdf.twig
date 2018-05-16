@@ -193,6 +193,20 @@
 							{% endif %}
 						</td>
 					</tr>
+					{% if gdprData.member.fields|length %}
+						<tr>
+							<td>
+								<h2>Custom Fields</h2>
+							</td>
+						</tr>
+						<tr>
+							<td class="label">
+								{% for fieldKey, fieldVal in gdprData.member.fields %}
+									<p>{{ fieldKey|camelToSpace|title }}: {{ fieldVal }}</p>
+								{% endfor %}
+							</td>
+						</tr>
+					{% endif %}
 					{% if gdprData.member.entries|length %}
 						<tr>
 							<td>

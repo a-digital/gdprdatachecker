@@ -65,6 +65,16 @@ class GdprDataCheckerService extends BaseApplicationComponent
 			}
 			$member["entries"] = $authored;
 		}
+		
+		$memberFields = [];
+		$query = craft()->db->createCommand();
+	    $fields = $query->select("*")->from("content")->where(["id" => $member["id"]])->limit(1)->queryRow();
+	    foreach($fields as $fieldkey => $fieldvar) {
+		    if (isset($fieldvar) && $fieldvar <> "" && strpos($fieldkey, "field_") !== false) {
+		    	$memberFields[str_replace("field_", "", $fieldkey)] = $fieldvar;
+		    }
+	    }
+	    $member["fields"] = $memberFields;
 
         return $member;
     }
