@@ -1,5 +1,13 @@
 [
     {
+        "version": "1.0.3",
+        "downloadUrl": "https://github.com/a-digital/gdprdatachecker/archive/master.zip",
+        "date": "2018-06-04T14:37:05.284Z",
+        "notes": [
+            "[Fixed] Fixed scenarios when no results are returned to display a user friendly message"
+        ]
+    },
+    {
         "version": "1.0.2",
         "downloadUrl": "https://github.com/a-digital/gdprdatachecker/archive/master.zip",
         "date": "2018-06-04T10:52:34.284Z",
