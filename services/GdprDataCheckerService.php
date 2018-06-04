@@ -35,14 +35,31 @@ class GdprDataCheckerService extends BaseApplicationComponent
     public function generateData($email)
     {
 	    $data = [];
-	    
-	    $data["member"] = $this->memberData($email);
-		$data["freeform"] = $this->freeformData($email);
-		$data["formbuilder"] = $this->formbuilderData($email);
-		$data["commerce"] = $this->commerceData($email);
-		$data["charge"] = $this->chargeData($email);
-	    
-	    return $data;
+	    $member = $this->memberData($email);
+	    if ($member !== false) {
+		    $data["member"] = $member;
+	    }
+	    $freeform = $this->freeformData($email);
+	    if ($freeform !== false) {
+		    $data["freeform"] = $freeform;
+	    }
+	    $formbuilder = $this->formbuilderData($email);
+	    if ($formbuilder !== false) {
+		    $data["formbuilder"] = $formbuilder;
+	    }
+	    $commerce = $this->commerceData($email);
+	    if ($commerce !== false) {
+		    $data["commerce"] = $commerce;
+	    }
+	    $charge = $this->chargeData($email);
+	    if ($charge !== false) {
+		    $data["charge"] = $charge;
+	    }
+	    if (isset($data) && (is_array($data) || (is_object($data) && $data instanceof \Countable)) && count($data) > 0) {
+	    	return $data;
+	    } else {
+		    return false;
+	    }
     }
     
     public function memberData($email)
