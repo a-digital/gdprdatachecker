@@ -46,7 +46,7 @@ class GdprDataChecker_ActionsController extends BaseController
 	    $email = craft()->request->getParam('emailAddress');
 	    
 	    $variables = [];
-		$variables["gdprData"] = craft()->gdprDataChecker->generateDate($email);
+		$variables["gdprData"] = craft()->gdprDataChecker->generateData($email);
         $variables["gdprEmail"] = $email;
         
         return $this->renderTemplate('gdprdatachecker/result', $variables);
@@ -61,7 +61,7 @@ class GdprDataChecker_ActionsController extends BaseController
 	    $email = craft()->request->getParam('emailAddress');
 	    
 	    $variables = [];
-		$variables["gdprData"] = craft()->gdprDataChecker->generateDate($email);
+		$variables["gdprData"] = craft()->gdprDataChecker->generateData($email);
         $variables["gdprEmail"] = $email;
         
         $fileName = craft()->gdprDataChecker->generateReport($email, $variables);
@@ -85,7 +85,7 @@ class GdprDataChecker_ActionsController extends BaseController
 	    $emailAddress = craft()->request->getParam('emailAddress');
 	    
 	    $variables = [];
-		$variables["gdprData"] = craft()->gdprDataChecker->generateDate($emailAddress);
+		$variables["gdprData"] = craft()->gdprDataChecker->generateData($emailAddress);
         $variables["gdprEmail"] = $emailAddress;
         
         $fileName = craft()->gdprDataChecker->generateReport($emailAddress, $variables);

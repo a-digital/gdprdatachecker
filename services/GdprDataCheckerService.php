@@ -32,7 +32,7 @@ class GdprDataCheckerService extends BaseApplicationComponent
      *
      *     craft()->gdprDataChecker->exampleService()
      */
-    public function generateDate($email)
+    public function generateData($email)
     {
 	    $data = [];
 	    
