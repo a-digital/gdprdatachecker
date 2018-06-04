@@ -66,21 +66,23 @@ class GdprDataCheckerService extends BaseApplicationComponent
 				}
 			}
 			$member["entries"] = $authored;
-		}
 		
-		$memberFields = [];
-		$query = craft()->db->createCommand();
-	    $fields = $query->select("*")->from("content")->where(["id" => $member["id"]])->limit(1)->queryRow();
-	    if (isset($fields) && (is_array($fields) || (is_object($fields) && $fields instanceof \Countable)) && count($fields) > 0) {
-		    foreach($fields as $fieldkey => $fieldvar) {
-			    if (isset($fieldvar) && $fieldvar <> "" && strpos($fieldkey, "field_") !== false) {
-			    	$memberFields[str_replace("field_", "", $fieldkey)] = $fieldvar;
+		
+			$memberFields = [];
+			$query = craft()->db->createCommand();
+		    $fields = $query->select("*")->from("content")->where(["id" => $member["id"]])->limit(1)->queryRow();
+		    if (isset($fields) && (is_array($fields) || (is_object($fields) && $fields instanceof \Countable)) && count($fields) > 0) {
+			    foreach($fields as $fieldkey => $fieldvar) {
+				    if (isset($fieldvar) && $fieldvar <> "" && strpos($fieldkey, "field_") !== false) {
+				    	$memberFields[str_replace("field_", "", $fieldkey)] = $fieldvar;
+				    }
 			    }
 		    }
+		    $member["fields"] = $memberFields;
+		    return $member;
 	    }
-	    $member["fields"] = $memberFields;
 
-        return $member;
+        return false;
     }
     
     public function freeformData($email)
