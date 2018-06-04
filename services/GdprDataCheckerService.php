@@ -60,8 +60,10 @@ class GdprDataCheckerService extends BaseApplicationComponent
 		    $entries = $query->select("*")->from("entries")->where(["authorId" => $member["id"]])->queryAll();
 		    
 			$authored = [];
-			foreach($entries as $entry) {
-				$authored[] = craft()->entries->getEntryById($entry["id"]);
+			if (isset($entries) && count($entries) > 0) {
+				foreach($entries as $entry) {
+					$authored[] = craft()->entries->getEntryById($entry["id"]);
+				}
 			}
 			$member["entries"] = $authored;
 		}
@@ -69,9 +71,11 @@ class GdprDataCheckerService extends BaseApplicationComponent
 		$memberFields = [];
 		$query = craft()->db->createCommand();
 	    $fields = $query->select("*")->from("content")->where(["id" => $member["id"]])->limit(1)->queryRow();
-	    foreach($fields as $fieldkey => $fieldvar) {
-		    if (isset($fieldvar) && $fieldvar <> "" && strpos($fieldkey, "field_") !== false) {
-		    	$memberFields[str_replace("field_", "", $fieldkey)] = $fieldvar;
+	    if (isset($fields) && count($fields) > 0) {
+		    foreach($fields as $fieldkey => $fieldvar) {
+			    if (isset($fieldvar) && $fieldvar <> "" && strpos($fieldkey, "field_") !== false) {
+			    	$memberFields[str_replace("field_", "", $fieldkey)] = $fieldvar;
+			    }
 		    }
 	    }
 	    $member["fields"] = $memberFields;
@@ -90,29 +94,37 @@ class GdprDataCheckerService extends BaseApplicationComponent
 		$fieldData = $query->select("*")->from("freeform_fields")->queryAll();
 		
 		$fields = [];
-		foreach($fieldData as $key => $field) {
-			$fields[$field["id"]] = $field["label"];
+		if (isset($fieldData) && count($fieldData) > 0) {
+			foreach($fieldData as $key => $field) {
+				$fields[$field["id"]] = $field["label"];
+			}
 		}
 		
 		$freeformColumns = ["or"];
 		$columns = craft()->db->getSchema()->getTables()["craft_freeform_submissions"]->columns;
 		$query = craft()->db->createCommand();
 		$submissionQuery = $query->select("*")->from("freeform_submissions");
-		foreach($columns as $id => $column) {
-			if (strpos($id, "field_") !== false) {
-				$submissionQuery->orWhere(["like", $id, "%".$email."%"]);
+		if (isset($columns) && count($columns) > 0) {
+			foreach($columns as $id => $column) {
+				if (strpos($id, "field_") !== false) {
+					$submissionQuery->orWhere(["like", $id, "%".$email."%"]);
+				}
 			}
 		}
 		$results = $submissionQuery->queryAll();
 		
 		$submissions = [];
-		foreach($results as $key => $submission) {
-			foreach($submission as $fieldKey => $fieldVal) {
-				$fieldId = str_replace("field_", "", $fieldKey);
-				if (isset($fields[$fieldId]) && $fields[$fieldId] <> '') {
-					$submissions[$key][$fields[$fieldId]] = $fieldVal;
-				} else {
-					$submissions[$key][$fieldKey] = $fieldVal;
+		if (isset($results) && count($results) > 0) {
+			foreach($results as $key => $submission) {
+				if (isset($submission) && count($submission) > 0) {
+					foreach($submission as $fieldKey => $fieldVal) {
+						$fieldId = str_replace("field_", "", $fieldKey);
+						if (isset($fields[$fieldId]) && $fields[$fieldId] <> '') {
+							$submissions[$key][$fields[$fieldId]] = $fieldVal;
+						} else {
+							$submissions[$key][$fieldKey] = $fieldVal;
+						}
+					}
 				}
 			}
 		}
@@ -130,8 +142,10 @@ class GdprDataCheckerService extends BaseApplicationComponent
 		$query = craft()->db->createCommand();
 	    $submissions = $query->select("*")->from("formbuilder2_entries")->where(["like", "submission", [$email]])->queryAll();
 		
-		foreach($submissions as $key => $submission) {
-			$submissions[$key]["submission"] = (array)json_decode($submission["submission"]);
+		if (isset($submissions) && count($submissions) > 0) {
+			foreach($submissions as $key => $submission) {
+				$submissions[$key]["submission"] = (array)json_decode($submission["submission"]);
+			}
 		}
 
         return $submissions;
@@ -147,15 +161,17 @@ class GdprDataCheckerService extends BaseApplicationComponent
 		$query = craft()->db->createCommand();
 	    $customers = $query->select("customerId")->from("commerce_orders")->where(["email" => $email])->group("customerId")->queryAll();
 		
-		foreach($customers as $key => $customer) {
-			$customer[$key]["customer"] = craft()->commerce_customers->getCustomerById($customer["customerId"]);
-			if (in_array("craft_commerce_customers_addresses", $tables) && in_array("craft_commerce_addresses", $tables)) {
-			    $customers[$key]["addresses"] = craft()->commerce_addresses->getAddressesByCustomerId($customer["customerId"]);
-		    }
-		    $customers[$key]["orders"] = craft()->commerce_orders->getOrdersByCustomer($customer[$key]["customer"]);
-		    
-		    $query = craft()->db->createCommand();
-		    $customers[$key]["inactiveCarts"] = $query->select("*")->from("commerce_orders")->where(["customerId" => $customer["customerId"], "isCompleted" => 0])->queryAll();
+		if (isset($customers) && count($customers) > 0) {
+			foreach($customers as $key => $customer) {
+				$customer[$key]["customer"] = craft()->commerce_customers->getCustomerById($customer["customerId"]);
+				if (in_array("craft_commerce_customers_addresses", $tables) && in_array("craft_commerce_addresses", $tables)) {
+				    $customers[$key]["addresses"] = craft()->commerce_addresses->getAddressesByCustomerId($customer["customerId"]);
+			    }
+			    $customers[$key]["orders"] = craft()->commerce_orders->getOrdersByCustomer($customer[$key]["customer"]);
+			    
+			    $query = craft()->db->createCommand();
+			    $customers[$key]["inactiveCarts"] = $query->select("*")->from("commerce_orders")->where(["customerId" => $customer["customerId"], "isCompleted" => 0])->queryAll();
+			}
 		}
 
         return $customers;
@@ -172,11 +188,15 @@ class GdprDataCheckerService extends BaseApplicationComponent
 	    $customers = $query->select("*")->from("charge_customers")->where(["email" => $email])->queryAll();
 		
 		if (in_array("craft_charges", $tables)) {
-			foreach($customers as $key => $customer) {
-				$query = craft()->db->createCommand();
-			    $customers[$key]["charges"] = $query->select("*")->from("charges")->where(["customerId" => $customer["id"]])->queryAll();
-				foreach($customers[$key]["charges"] as $chargekey => $charge) {
-					$customers[$key]["charges"][$chargekey]["request"] = json_decode($charge["request"]);
+			if (isset($customers) && count($customers) > 0) {
+				foreach($customers as $key => $customer) {
+					$query = craft()->db->createCommand();
+				    $customers[$key]["charges"] = $query->select("*")->from("charges")->where(["customerId" => $customer["id"]])->queryAll();
+					if (isset($customers[$key]["charges"]) && count($customers[$key]["charges"]) > 0) {
+						foreach($customers[$key]["charges"] as $chargekey => $charge) {
+							$customers[$key]["charges"][$chargekey]["request"] = json_decode($charge["request"]);
+						}
+					}
 				}
 			}
 		}
@@ -228,12 +248,14 @@ class GdprDataCheckerService extends BaseApplicationComponent
 			$it = new \RecursiveDirectoryIterator($destination, \RecursiveDirectoryIterator::SKIP_DOTS);
 			$files = new \RecursiveIteratorIterator($it,
 			             \RecursiveIteratorIterator::CHILD_FIRST);
-			foreach($files as $file) {
-			    if ($file->isDir()){
-			        rmdir($file->getRealPath());
-			    } else {
-			        unlink($file->getRealPath());
-			    }
+			if (isset($files) && count($files) > 0) {
+				foreach($files as $file) {
+				    if ($file->isDir()){
+				        rmdir($file->getRealPath());
+				    } else {
+				        unlink($file->getRealPath());
+				    }
+				}
 			}
 			rmdir($destination);
 	    }
