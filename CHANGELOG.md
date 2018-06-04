@@ -1,5 +1,9 @@
 # GDPR Data Checker Changelog
 
+## 1.0.2 -- 2018-06-04
+### Changed
+* Fixed count() warning shown only on PHP 7.2
+
 ## 1.0.1 -- 2018-06-04
 ### Changed
 * Fixed an issue with foreach loops if no results were returned by the queries
