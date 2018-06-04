@@ -7,8 +7,8 @@ Run through the database and pull out any information associated with a specifie
 To install GDPR Data Checker, follow these steps:
 
 1. Download & unzip the file and place the `gdprdatachecker` directory into your `craft/plugins` directory
-2.  -OR- do a `git clone https://github.com/gdprdatachecker/gdprdatachecker.git` directly into your `craft/plugins` folder.  You can then update it with `git pull`
-3.  -OR- install with Composer via `composer require gdprdatachecker/gdprdatachecker`
+2.  -OR- do a `git clone https://github.com/a-digital/gdprdatachecker.git` directly into your `craft/plugins` folder.  You can then update it with `git pull`
+3.  -OR- install with Composer via `composer require a-digital/gdprdatachecker`
 4. Install plugin in the Craft Control Panel under Settings > Plugins
 5. The plugin folder should be named `gdprdatachecker` for Craft to see it.  GitHub recently started appending `-master` (the branch name) to the name of the folder for zip file downloads.
 

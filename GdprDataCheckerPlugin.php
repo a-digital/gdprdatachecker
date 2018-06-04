@@ -73,7 +73,7 @@ class GdprDataCheckerPlugin extends BasePlugin
      */
     public function getDocumentationUrl()
     {
-        return 'https://github.com/gdprdatachecker/gdprdatachecker/blob/master/README.md';
+        return 'https://github.com/a-digital/gdprdatachecker/blob/master/README.md';
     }
 
     /**
@@ -85,7 +85,7 @@ class GdprDataCheckerPlugin extends BasePlugin
      */
     public function getReleaseFeedUrl()
     {
-        return 'https://raw.githubusercontent.com/gdprdatachecker/gdprdatachecker/master/releases.json';
+        return 'https://raw.githubusercontent.com/a-digital/gdprdatachecker/master/releases.json';
     }
 
     /**
