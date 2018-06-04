@@ -129,9 +129,10 @@ class GdprDataCheckerService extends BaseApplicationComponent
 					}
 				}
 			}
+			return $submissions;
 		}
 		
-        return $submissions;
+        return false;
     }
     
     public function formbuilderData($email)
@@ -148,9 +149,10 @@ class GdprDataCheckerService extends BaseApplicationComponent
 			foreach($submissions as $key => $submission) {
 				$submissions[$key]["submission"] = (array)json_decode($submission["submission"]);
 			}
+			return $submissions;
 		}
 
-        return $submissions;
+        return false;
     }
     
     public function commerceData($email)
@@ -174,9 +176,10 @@ class GdprDataCheckerService extends BaseApplicationComponent
 			    $query = craft()->db->createCommand();
 			    $customers[$key]["inactiveCarts"] = $query->select("*")->from("commerce_orders")->where(["customerId" => $customer["customerId"], "isCompleted" => 0])->queryAll();
 			}
+			return $customers;
 		}
 
-        return $customers;
+        return false;
     }
     
     public function chargeData($email)
@@ -201,9 +204,10 @@ class GdprDataCheckerService extends BaseApplicationComponent
 					}
 				}
 			}
+			return $customers;
 		}
 
-        return $customers;
+        return false;
     }
     
     public function generateReport($email, $variables)
