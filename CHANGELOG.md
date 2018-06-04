@@ -1,5 +1,10 @@
 # GDPR Data Checker Changelog
 
+## 1.0.1 -- 2018-06-04
+### Changed
+* Fixed an issue with foreach loops if no results were returned by the queries
+* Fixed github urls for documentation
+
 ## 1.0.0 -- 2018-05-04
 
 * Initial release
