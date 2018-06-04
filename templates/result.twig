@@ -17,32 +17,34 @@
 
 {% set title = "Data Report for " ~ gdprEmail %}
 
-{% set extraPageHeaderHtml %}
-	<div id="container">
-		<form class="top-button" method="post" accept-charset="UTF-8" data-saveshortcut data-confirm-unload>
-			{{ forms.hidden({
-			    name: 'action',
-			    value: 'gdprDataChecker/actions/emailReport'
-			}) }}
-			{{ forms.hidden({
-			    name: 'emailAddress',
-			    value: gdprEmail
-			}) }}
-			<input type="submit" class="btn submit" value="{{ 'Email'|t }}">
-		</form>
-		<form class="top-button" method="post" accept-charset="UTF-8" data-saveshortcut data-confirm-unload>
-			{{ forms.hidden({
-			    name: 'action',
-			    value: 'gdprDataChecker/actions/downloadReport'
-			}) }}
-			{{ forms.hidden({
-			    name: 'emailAddress',
-			    value: gdprEmail
-			}) }}
-			<input type="submit" class="btn submit" value="{{ 'Download'|t }}">
-		</form>
-	</div>
-{% endset %}
+{% if gdprData is defined and gdprData|length %}
+	{% set extraPageHeaderHtml %}
+		<div id="container">
+			<form class="top-button" method="post" accept-charset="UTF-8" data-saveshortcut data-confirm-unload>
+				{{ forms.hidden({
+				    name: 'action',
+				    value: 'gdprDataChecker/actions/emailReport'
+				}) }}
+				{{ forms.hidden({
+				    name: 'emailAddress',
+				    value: gdprEmail
+				}) }}
+				<input type="submit" class="btn submit" value="{{ 'Email'|t }}">
+			</form>
+			<form class="top-button" method="post" accept-charset="UTF-8" data-saveshortcut data-confirm-unload>
+				{{ forms.hidden({
+				    name: 'action',
+				    value: 'gdprDataChecker/actions/downloadReport'
+				}) }}
+				{{ forms.hidden({
+				    name: 'emailAddress',
+				    value: gdprEmail
+				}) }}
+				<input type="submit" class="btn submit" value="{{ 'Download'|t }}">
+			</form>
+		</div>
+	{% endset %}
+{% endif %}
 
 {% set content %}
 	
@@ -51,6 +53,10 @@
 	
 	<h2>{{ "Please Note"|t }}</h2>
 	<p class="textline">The information shown below has been grouped into collapsed sections. To view the data within each section just click on the relevant heading to expand the data. Some sections may also have sub sections, e.g. commerce orders, commerce addresses, etc. which can also be expanded. This data can also be downloaded as a PDF report, or sent directly to the email address of the person this data relates to. You can do this by using the Email and Download buttons to the top right of the page.</p>
+	
+	{% if gdprData is not defined or gdprData|length == 0 %}
+		<p>Sorry but we couldn't find any data for this email address.</p>
+	{% endif %}
 	
 	{% if gdprData.member is defined and gdprData.member|length %}
 		<div class="blockcontentwrap">
