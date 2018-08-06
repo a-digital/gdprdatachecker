@@ -1,5 +1,9 @@
 # GDPR Data Checker Changelog
 
+## 2.0.0 - 2018-08-06
+### Changed
+- Updated for Craft 3
+
 ## 1.0.4 -- 2018-08-06
 ### Changed
 * Updated from master branch to craft2 branch to allow for craft3 version to be published
@@ -18,7 +22,6 @@
 * Fixed github urls for documentation
 
 ## 1.0.0 -- 2018-05-04
-
 * Initial release
 
 Brought to you by [A Digital](https://adigital.agency)

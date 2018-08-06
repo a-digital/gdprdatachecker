@@ -1,14 +1,44 @@
 {
-	"name": "a-digital/gdprdatachecker",
-	"description": "Run through the database and pull out any information associated with a specified email address",
-	"type": "craft-plugin",
-	"authors": [
-		{
-			"name": "A Digital",
-			"homepage": "https://adigital.agency"
-		}
-	],
-	"require": {
-		"composer/installers": "~1.0"
-	}
+    "name": "adigital/gdprdatachecker",
+    "description": "Run through the database and pull out any information associated with a specified email address",
+    "type": "craft-plugin",
+    "version": "2.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "gdpr data checker"
+    ],
+    "support": {
+        "docs": "https://github.com/a-digital/gdprdatachecker/blob/craft3/README.md",
+        "issues": "https://github.com/a-digital/gdprdatachecker/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "A Digital",
+            "homepage": "https://adigital.agency"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1",
+        "dompdf/dompdf": "^0.8.2"
+    },
+    "autoload": {
+        "psr-4": {
+          "adigital\\gdprdatachecker\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "GDPR Data Checker",
+        "handle": "gdprdatachecker",
+        "hasCpSettings": false,
+        "hasCpSection": true,
+        "changelogUrl": "https://raw.githubusercontent.com/a-digital/gdprdatachecker/craft3/CHANGELOG.md",
+        "components": {
+            "gdprdatacheckerService": "adigital\\gdprdatachecker\\services\\GdprdatacheckerService"
+        },
+        "class": "adigital\\gdprdatachecker\\Gdprdatachecker"
+    }
 }

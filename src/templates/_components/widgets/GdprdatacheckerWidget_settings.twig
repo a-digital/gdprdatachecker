@@ -1,0 +1,26 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * GDPR Data Checker plugin for Craft CMS
+ *
+ * GdprdatacheckerWidget Widget Settings
+ *
+ * @author    Matt Shearing
+ * @copyright Copyright (c) 2018 Matt Shearing
+ * @link      https://adigital.agency
+ * @package   Gdprdatachecker
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("adigital\\gdprdatachecker\\assetbundles\\gdprdatachecker\\GdprdatacheckerAsset") %}
+
+{{ forms.textField({
+    label: 'Message',
+    instructions: 'Enter a message here.',
+    id: 'message',
+    name: 'message',
+    value: widget['message']})
+}}

@@ -1,0 +1,56 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * GDPR Data Checker plugin for Craft CMS 3.x
+ *
+ * GDPR Data Checker index.twig
+ *
+ * @author    Matt Shearing
+ * @copyright Copyright (c) 2018 Matt Shearing
+ * @link      https://adigital.agency
+ * @package   Gdprdatachecker
+ * @since     1.0.0
+ */
+#}
+
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("adigital\\gdprdatachecker\\assetbundles\\gdprdatachecker\\GdprdatacheckerAsset") %}
+{% do view.registerAssetBundle("adigital\\gdprdatachecker\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}
+
+{# Link for the ? icon at the bottom of the page #}
+{% set docsUrl = "https://github.com/a-digital/gdprdatachecker/blob/craft3/README.md" %}
+
+{# The title of this CP section #}
+{% set title = "GDPR Data Checker" %}
+
+{# The URL to this plugin's base CP section #}
+{% set pluginCpUrl = url('gdprdatachecker') %}
+
+{# Get a URL to an image in our AssetBundle #}
+{% set iconUrl = view.getAssetManager().getPublishedUrl('@adigital/gdprdatachecker/assetbundles/indexcpsection/dist', true) ~ '/img/Index-icon.svg' %}
+
+{# Content that should appear in the page header#}
+{% set fullPageForm = "true" %}
+{% block actionButton %}
+	<input type="submit" class="btn submit" id="gdprsubmitemail" value="{{ 'Check'|t('app') }}">
+{% endblock %}
+
+{# The content of the CP Section#}
+{% set content %}
+    <h2>{{ "Please Note"|t('gdprdatachecker') }}</h2>
+    <p class="textline">By entering someones email address you are ackowledging a request from someone to see all of their data held on them by this site. Please note however that any data saved in 3rd party services such as Stripe, MailChimp, Campaign Monitor, etc will not be returned by this tool. To get this data you will need to request it from each of those specific third party services as this will only look through the data held in the local database for the website.</p>
+    {{ forms.textField({
+	    label: 'Email Address',
+	    instructions: 'Please enter the email address of the person who you would like to retrieve data for.',
+	    id: 'emailAddress',
+	    name: 'emailAddress',
+	    value: ''
+	}) }}
+	{{ forms.hidden({
+	    id: 'action',
+	    name: 'action',
+	    value: 'gdprdatachecker/default/check-email'
+	}) }}
+{% endset %}

@@ -1,0 +1,20 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * GDPR Data Checker plugin for Craft CMS
+ *
+ * GdprdatacheckerWidget Widget Body
+ *
+ * @author    Matt Shearing
+ * @copyright Copyright (c) 2018 Matt Shearing
+ * @link      https://adigital.agency
+ * @package   Gdprdatachecker
+ * @since     1.0.0
+ */
+#}
+
+{% set iconUrl = view.getAssetManager().getPublishedUrl('@adigital/gdprdatachecker/assetbundles/gdprdatacheckerwidgetwidget/dist', true) ~ '/img/GdprdatacheckerWidget-icon.svg' %}
+
+<img src="{{ iconUrl }}" height="64" width="64" />
+
+<p>{{ message }}</p>
