@@ -1,5 +1,9 @@
 # GDPR Data Checker Changelog
 
+## 1.0.4 -- 2018-08-06
+### Changed
+* Updated from master branch to craft2 branch to allow for craft3 version to be published
+
 ## 1.0.3 -- 2018-06-04
 ### Changed
 * Fixed scenarios when no results are returned to display a user friendly message
