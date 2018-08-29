@@ -1,5 +1,9 @@
 # GDPR Data Checker Changelog
 
+## 2.0.1 - 2018-08-29
+### Fixed
+- Fixed an error where the CustomerRecord class was not found when querying commerce data
+
 ## 2.0.0 - 2018-08-06
 ### Changed
 - Updated for Craft 3

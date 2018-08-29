@@ -354,7 +354,7 @@ class GdprdatacheckerService extends Component
 			$commerce_addresses_exists = $query->one();
 			foreach($customers as $key => $customer) {
 				$customerRecord = new \craft\commerce\records\Customer();
-				$customer[$key]["customer"] = CustomerRecord::findOne($customer["customerId"]);
+				$customer[$key]["customer"] = $customerRecord::findOne($customer["customerId"]);
 				if ($customer_addresses_exist["count(*)"] !== "0" && $commerce_addresses_exists["count(*)"] !== "0") {
 				    $addressRecord = new \craft\commerce\records\CustomerAddress();
 				    $customers[$key]["addresses"] = $addressRecord::find()->where([
