@@ -1,5 +1,11 @@
 # GDPR Data Checker Changelog
 
+## 2.0.2 - 2018-09-03
+### Fixed
+- Fixed various errors where commerce order data is included in the report
+- Fixed pdf generation errors where commerce order data is included
+- Fixed address handling where only the reference id was included instead of the full address model
+
 ## 2.0.1 - 2018-08-29
 ### Fixed
 - Fixed an error where the CustomerRecord class was not found when querying commerce data
