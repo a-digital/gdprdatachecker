@@ -382,28 +382,22 @@
 										<p>Edit Order: /cms/commerce/orders/{{ order.id }}</p>
 										<p>Billing Shipping ID: {{ order.billingAddressId }}</p>
 										<p>Shipping Shipping ID: {{ order.shippingAddressId }}</p>
-										<p>Payment Method ID: {{ order.paymentMethodId }}</p>
+										<p>Payment Method ID: {{ order.paymentSourceId }}</p>
 										<p>Order Status ID: {{ order.orderStatusId }}</p>
 										<p>Number: {{ order.number }}</p>
 										{% if order.couponCode|length %}
 											<p>Coupon Code: {{ order.couponCode }}</p>
 										{% endif %}
 										<p>Item Total: {{ order.itemTotal }}</p>
-										{% if order.baseDiscount > 0 %}
-											<p>Base Discount: {{ order.baseDiscount }}</p>
+										{% if order.couponCode > 0 %}
+											<p>Base Discount: {{ order.couponCode }}</p>
 										{% endif %}
-										<p>Base Shipping Cost: {{ order.baseShippingCost }}</p>
-										{% if order.baseTax > 0 %}
-											<p>Base Tax: {{ order.baseTax }}</p>
-										{% endif %}
-										{% if order.baseTaxIncluded > 0 %}
-											<p>Base Tax Included: {{ order.baseTaxIncluded }}</p>
-										{% endif %}
+										<p>Base Shipping Cost: {{ order.shippingMethodHandle }}</p>
 										<p>Total Price: {{ order.totalPrice }}</p>
 										<p>Total Paid: {{ order.totalPaid }}</p>
 										<p>Is Completed: {{ order.isCompleted }}</p>
-										<p>Date Ordered: {{ order.dateOrdered }}</p>
-										<p>Date Paid: {{ order.datePaid }}</p>
+										<p>Date Ordered: {{ order.dateOrdered|date("Y-m-d H:i:s") }}</p>
+										<p>Date Paid: {{ order.datePaid|date("Y-m-d H:i:s") }}</p>
 										<p>Currency: {{ order.currency }}</p>
 										<p>Payment Currency: {{ order.paymentCurrency }}</p>
 										<p>Last IP: {{ order.lastIp }}</p>
@@ -414,8 +408,8 @@
 										<p>Return Url: {{ order.returnUrl }}</p>
 										<p>Cancel Url: {{ order.cancelUrl }}</p>
 										<p>Shipping Method: {{ order.shippingMethod.name }}</p>
-										<p>Date Created: {{ order.dateCreated }}</p>
-										<p>Date Updated: {{ order.dateUpdated }}</p>
+										<p>Date Created: {{ order.dateCreated|date("Y-m-d H:i:s") }}</p>
+										<p>Date Updated: {{ order.dateUpdated|date("Y-m-d H:i:s") }}</p>
 									</td>
 								</tr>
 								{% if not loop.last %}
@@ -444,8 +438,8 @@
 										{% if cart.shippingAddressId|length %}
 											<p>Shipping Shipping ID: {{ cart.shippingAddressId }}</p>
 										{% endif %}
-										{% if cart.paymentMethodId|length %}
-											<p>Payment Method ID: {{ cart.paymentMethodId }}</p>
+										{% if cart.paymentSourceId|length %}
+											<p>Payment Method ID: {{ cart.paymentSourceId }}</p>
 										{% endif %}
 										{% if cart.orderStatusId|length %}
 											<p>Order Status ID: {{ cart.orderStatusId }}</p>
@@ -459,17 +453,11 @@
 										{% if cart.itemTotal > 0 %}
 											<p>Item Total: {{ cart.itemTotal }}</p>
 										{% endif %}
-										{% if cart.baseDiscount > 0 %}
-											<p>Base Discount: {{ cart.baseDiscount }}</p>
+										{% if cart.couponCode > 0 %}
+											<p>Base Discount: {{ cart.couponCode }}</p>
 										{% endif %}
-										{% if cart.baseShippingCost > 0 %}
-											<p>Base Shipping Cost: {{ cart.baseShippingCost }}</p>
-										{% endif %}
-										{% if cart.baseTax > 0 %}
-											<p>Base Tax: {{ cart.baseTax }}</p>
-										{% endif %}
-										{% if cart.baseTaxIncluded > 0 %}
-											<p>Base Tax Included: {{ cart.baseTaxIncluded }}</p>
+										{% if cart.shippingMethodHandle > 0 %}
+											<p>Base Shipping Cost: {{ cart.shippingMethodHandle }}</p>
 										{% endif %}
 										{% if cart.totalPrice > 0 %}
 											<p>Total Price: {{ cart.totalPrice }}</p>
@@ -481,10 +469,10 @@
 											<p>Is Completed: {{ cart.isCompleted }}</p>
 										{% endif %}
 										{% if cart.dateOrdered|length %}
-											<p>Date Ordered: {{ cart.dateOrdered }}</p>
+											<p>Date Ordered: {{ cart.dateOrdered|date("Y-m-d H:i:s") }}</p>
 										{% endif %}
 										{% if cart.datePaid|length %}
-											<p>Date Paid: {{ cart.datePaid }}</p>
+											<p>Date Paid: {{ cart.datePaid|date("Y-m-d H:i:s") }}</p>
 										{% endif %}
 										{% if cart.currency|length %}
 											<p>Currency: {{ cart.currency }}</p>
@@ -495,9 +483,6 @@
 										{% if cart.lastIp|length %}
 											<p>Last IP: {{ cart.lastIp }}</p>
 										{% endif %}
-										{% if cart.orderLocale|length %}
-											<p>Order Locale: {{ cart.orderLocale }}</p>
-										{% endif %}
 										{% if cart.message|length %}
 											<p>Message: {{ cart.message }}</p>
 										{% endif %}
@@ -507,14 +492,14 @@
 										{% if cart.cancelUrl|length %}
 											<p>Cancel Url: {{ cart.cancelUrl }}</p>
 										{% endif %}
-										{% if cart.shippingMethod|length %}
-											<p>Shipping Method: {{ cart.shippingMethod }}</p>
+										{% if cart.shippingMethodHandle|length %}
+											<p>Shipping Method: {{ cart.shippingMethodHandle }}</p>
 										{% endif %}
 										{% if cart.dateCreated|length %}
-											<p>Date Created: {{ cart.dateCreated }}</p>
+											<p>Date Created: {{ cart.dateCreated|date("Y-m-d H:i:s") }}</p>
 										{% endif %}
 										{% if cart.dateUpdated|length %}
-											<p>Date Updated: {{ cart.dateUpdated }}</p>
+											<p>Date Updated: {{ cart.dateUpdated|date("Y-m-d H:i:s") }}</p>
 										{% endif %}
 									</td>
 								</tr>
