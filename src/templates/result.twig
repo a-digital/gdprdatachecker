@@ -269,10 +269,7 @@
 										<p>Coupon Code: {{ order.couponCode }}</p>
 									{% endif %}
 									<p>Item Total: {{ order.itemTotal }}</p>
-									{% if order.couponCode > 0 %}
-										<p>Base Discount: {{ order.couponCode }}</p>
-									{% endif %}
-									<p>Base Shipping Cost: {{ order.shippingMethodHandle }}</p>
+									<p>Shipping Method Handle: {{ order.shippingMethodHandle }}</p>
 									<p>Total Price: {{ order.totalPrice }}</p>
 									<p>Total Paid: {{ order.totalPaid }}</p>
 									<p>Is Completed: {{ order.isCompleted }}</p>
@@ -324,11 +321,8 @@
 									{% if cart.itemTotal > 0 %}
 										<p>Item Total: {{ cart.itemTotal }}</p>
 									{% endif %}
-									{% if cart.couponCode > 0 %}
-										<p>Base Discount: {{ cart.couponCode }}</p>
-									{% endif %}
-									{% if cart.shippingMethodHandle > 0 %}
-										<p>Base Shipping Cost: {{ cart.shippingMethodHandle }}</p>
+									{% if cart.shippingMethodHandle|length %}
+										<p>Shipping Method Handle: {{ cart.shippingMethodHandle }}</p>
 									{% endif %}
 									{% if cart.totalPrice > 0 %}
 										<p>Total Price: {{ cart.totalPrice }}</p>
