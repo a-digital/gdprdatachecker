@@ -1,5 +1,9 @@
 # GDPR Data Checker Changelog
 
+## 2.0.4 - 2018-09-05
+### Changed
+- Updated `Order::getOrderLocale()` to `Order::orderLanguage` after seeing a deprecation error
+
 ## 2.0.3 - 2018-09-05
 ### Fixed
 - Fixed pdf issue around shipping methods
