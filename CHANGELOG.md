@@ -1,5 +1,9 @@
 # GDPR Data Checker Changelog
 
+## 2.0.3 - 2018-09-05
+### Fixed
+- Fixed pdf issue around shipping methods
+
 ## 2.0.2 - 2018-09-03
 ### Fixed
 - Fixed various errors where commerce order data is included in the report
