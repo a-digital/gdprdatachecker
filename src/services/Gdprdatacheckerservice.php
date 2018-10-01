@@ -209,13 +209,16 @@ class GdprdatacheckerService extends Component
 			"from" => ["{{%freeform_submissions}}"]
 		]);
 		
+		$queryColumns = ["or"];
 		if (isset($columns) && (is_array($columns) || (is_object($columns) && $columns instanceof \Countable)) && count($columns) > 0) {
 			foreach($columns as $column) {
 				if (strpos($column["COLUMN_NAME"], "field_") !== false) {
-					$submissionQuery->orWhere(["like", $column["COLUMN_NAME"], "%".$email."%"]);
+// 					$submissionQuery->orWhere(["like", $column["COLUMN_NAME"], "%".$email."%"]);
+					$queryColumns[] = $column["COLUMN_NAME"]." LIKE '%".$email."%'";
 				}
 			}
 		}
+		$submissionQuery->where($queryColumns);
 		$results = $submissionQuery->all();
 		
 		$submissions = [];
