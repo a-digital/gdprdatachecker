@@ -1,5 +1,9 @@
 # GDPR Data Checker Changelog
 
+## 2.0.5 - 2018-10-01
+### Fixed
+- Fixed error where freeform submissions were sometimes missing
+
 ## 2.0.4 - 2018-09-05
 ### Changed
 - Updated `Order::getOrderLocale()` to `Order::orderLanguage` after seeing a deprecation error
