@@ -2,7 +2,7 @@
     "name": "adigital/gdprdatachecker",
     "description": "Run through the database and pull out any information associated with a specified email address",
     "type": "craft-plugin",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "keywords": [
         "craft",
         "cms",

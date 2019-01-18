@@ -1,5 +1,9 @@
 # GDPR Data Checker Changelog
 
+## 2.0.6 - 2010-01-18
+### Fixed
+- Fixed error with commerce customer queries
+
 ## 2.0.5 - 2018-10-01
 ### Fixed
 - Fixed error where freeform submissions were sometimes missing

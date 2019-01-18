@@ -372,7 +372,14 @@ class GdprdatacheckerService extends Component
 			    }
 			    $order = new \craft\commerce\elements\Order();
 	            $query = $order::find();
-		        $query->customer($customer[$key]["customer"]);
+	            $customerData = $customer[$key]["customer"]->toArray();
+	            $customerModel = new \craft\commerce\models\Customer([
+  	            'id' => $customerData['id'],
+  	            'userId' => $customerData['userId'],
+  	            'primaryBillingAddressId' => $customerData['primaryBillingAddressId'],
+  	            'primaryShippingAddressId' => $customerData['primaryShippingAddressId']
+	            ]);
+		        $query->customer($customerModel);
 		        $query->isCompleted(true);
 		        $query->limit(null);
 			    $customers[$key]["orders"] = $query->all();
