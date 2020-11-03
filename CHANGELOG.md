@@ -1,5 +1,9 @@
 # GDPR Data Checker Changelog
 
+## 2.0.8 - 2020-11-03
+### Fixed
+- Composer 2 compatibility - Service file PSR-4 autoloading standard
+
 ## 2.0.7 - 2020-11-03
 ### Fixed
 - Composer 2 compatibility - Asset bundle PSR-4 autoloading standard
