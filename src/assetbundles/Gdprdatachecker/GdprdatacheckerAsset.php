@@ -43,7 +43,7 @@ class GdprdatacheckerAsset extends AssetBundle
     public function init()
     {
         // define the path that your publishable resources live
-        $this->sourcePath = "@adigital/gdprdatachecker/assetbundles/gdprdatachecker/dist";
+        $this->sourcePath = "@adigital/gdprdatachecker/assetbundles/Gdprdatachecker/dist";
 
         // define the dependencies
         $this->depends = [
