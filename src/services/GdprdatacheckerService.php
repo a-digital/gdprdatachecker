@@ -511,7 +511,7 @@ class GdprdatacheckerService extends Component
 		$dompdf->loadHtml($html);
 		$size = "A4";
 		$orientation = "portrait";
-		$dompdf->set_paper($size, $orientation);
+		$dompdf->setPaper($size, $orientation);
 		$dompdf->render();
 		$pdf_gen = $dompdf->output();
 		$destination = CRAFT_VENDOR_PATH."/adigital/gdprdatachecker/src/templates/reports/";

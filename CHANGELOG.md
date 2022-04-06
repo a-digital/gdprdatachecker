@@ -1,5 +1,9 @@
 # GDPR Data Checker Changelog
 
+## 2.0.10 - 2022-04-06
+### Security
+- Updated Dompdf library to avoid [CVE-2022-28368](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-28368)
+
 ## 2.0.9 - 2020-11-04
 ### Fixed
 - Asset bundle sourcePath not correctly defined
